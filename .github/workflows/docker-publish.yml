@@ -18,9 +18,9 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: {% raw %}${{ github.actor }}{% endraw %}
-          password: {% raw %}${{ secrets.DOCKER_TOKEN }}{% endraw %}
+          username: ${{ github.actor }}
+          password: ${{ secrets.DOCKER_TOKEN }}
       - name: Build and push Docker image
         run: |
-          docker build . --tag ghcr.io/{{ full_repo_name | lower }}/stackoverflown:main
-          docker push ghcr.io/{{ full_repo_name | lower }}/stackoverflown:main
+          docker build . --tag ghcr.io/${{ github.repository_owner }}/skills-publish-docker-images:main
+          docker push ghcr.io/${{ github.repository_owner }}/skills-publish-docker-images:main
